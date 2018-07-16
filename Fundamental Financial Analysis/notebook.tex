@@ -1,0 +1,1154 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{FundamentalAnalysis}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{Financial Fundamentals}\label{financial-fundamentals}
+
+\begin{itemize}
+\tightlist
+\item
+  Portfolio Allocation
+\item
+  Sharpe Ratio
+\item
+  Portfolio Optimization
+\item
+  Efficient Frontier
+\item
+  CAPM - Capital Asset Pricing Model
+\end{itemize}
+
+    \subsection{Portfolio and Statistics}\label{portfolio-and-statistics}
+
+A portfolio is just a set of allocations in a variety of securities. For
+example: 20\% in AAPL, 30\% in FB, 50\% in GOOG
+
+\subsubsection{Key statistics}\label{key-statistics}
+
+\begin{itemize}
+\tightlist
+\item
+  Daily Returns - The percentage returned from 1 day to the next for a
+  stock.
+\item
+  Cumulative Return - The amount returned after an entire time period
+\item
+  Avg. Daily Return - Mean of Daily Returns
+\item
+  Std. Daily Return - Std. Dev of Daily Returns
+\end{itemize}
+
+\subsubsection{Sharpe Ratio}\label{sharpe-ratio}
+
+The Sharpe Ratio is a measure for calculating risk-adjusted return, and
+this ratio has become the industry standard for such calculations. It
+was developed by Nobel Laureate William F. Sharpe.
+
+\(SR = \dfrac{r_p - r_f}{\sigma_p}\)
+
+\begin{itemize}
+\tightlist
+\item
+  \(r_p\) is expected portfolio return
+\item
+  \(r_f\) is risk-free return
+\item
+  \(\sigma_p\) is porfolio standard deviation
+\end{itemize}
+
+Risk free return is the return you would receive if you put your money
+in an investment such as a bank savings account, LIBOR, Treasury Bonds
+that are essentially "risk-free".
+
+Currently in the United State (early 2017), these returns are very close
+to 0\%, so its just easier to approximate \(r_f\) as 0. Keep in mind
+though, the Federal Reserve may continue to raise interest rates in the
+future, effecting this result!!
+
+\begin{itemize}
+\tightlist
+\item
+  For now, assuming \(r_f\) is 0, so \textbf{SR = Mean Return /
+  Std.Dev.}
+\item
+  Keep in mind that Sharpe Ratio originally thought of this as a yearly
+  metric (as in mean yearly return vs. mean daily return). This is easy
+  to fix though.
+\end{itemize}
+
+    \subsubsection{Annualized Sharpe Ratio}\label{annualized-sharpe-ratio}
+
+The annualized Sharpe Ratio can be obtained by multiplying against a
+K-Factor based off your Sampling Rate: - Daily: K = sqrt(252) - Weekly:
+K = sqrt(52) - Monthly: K = sqrt(12)
+
+So \(ASR = K \times SR\)
+
+    \section{Code along Portfolio Allocation \& Sharpe
+Ratio}\label{code-along-portfolio-allocation-sharpe-ratio}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k+kn}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{import} \PY{n+nn}{quandl}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{start} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{to\PYZus{}datetime}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{2012\PYZhy{}01\PYZhy{}01}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{end} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{to\PYZus{}datetime}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{2017\PYZhy{}01\PYZhy{}01}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{aapl} \PY{o}{=} \PY{n}{quandl}\PY{o}{.}\PY{n}{get}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{WIKI/AAPL.11}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{start\PYZus{}date}\PY{o}{=}\PY{n}{start}\PY{p}{,} \PY{n}{end\PYZus{}date}\PY{o}{=}\PY{n}{end}\PY{p}{)}
+        \PY{n}{cisco}  \PY{o}{=} \PY{n}{quandl}\PY{o}{.}\PY{n}{get}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{WIKI/CSCO.11}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{start\PYZus{}date}\PY{o}{=}\PY{n}{start}\PY{p}{,} \PY{n}{end\PYZus{}date}\PY{o}{=}\PY{n}{end}\PY{p}{)}
+        \PY{n}{ibm} \PY{o}{=} \PY{n}{quandl}\PY{o}{.}\PY{n}{get}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{WIKI/IBM.11}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{start\PYZus{}date}\PY{o}{=}\PY{n}{start}\PY{p}{,} \PY{n}{end\PYZus{}date}\PY{o}{=}\PY{n}{end}\PY{p}{)}
+        \PY{n}{amzn} \PY{o}{=} \PY{n}{quandl}\PY{o}{.}\PY{n}{get}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{WIKI/AMZN.11}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{start\PYZus{}date}\PY{o}{=}\PY{n}{start}\PY{p}{,} \PY{n}{end\PYZus{}date}\PY{o}{=}\PY{n}{end}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{aapl}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Adj. Close}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}4}]:} 52.848786580038
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{c+c1}{\PYZsh{} Cumulated return, also known as normalized price}
+        \PY{k}{for} \PY{n}{stock\PYZus{}df} \PY{o+ow}{in} \PY{p}{(}\PY{n}{aapl}\PY{p}{,} \PY{n}{cisco}\PY{p}{,} \PY{n}{ibm}\PY{p}{,} \PY{n}{amzn}\PY{p}{)}\PY{p}{:} 
+            \PY{n}{stock\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Normed return}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{stock\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Adj. Close}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{/} \PY{n}{stock\PYZus{}df}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Adj. Close}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+            
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{aapl}\PY{o}{.}\PY{n}{tail}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}6}]:}             Adj. Close  Normed return
+        Date                                 
+        2016-12-23  115.080808       2.177549
+        2016-12-27  115.811668       2.191378
+        2016-12-28  115.317843       2.182034
+        2016-12-29  115.288214       2.181473
+        2016-12-30  114.389454       2.164467
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{c+c1}{\PYZsh{} 30\PYZpc{} in apple}
+        \PY{c+c1}{\PYZsh{} 20\PYZpc{} in cisco}
+        \PY{c+c1}{\PYZsh{} 40\PYZpc{} in amazon}
+        \PY{c+c1}{\PYZsh{} 10\PYZpc{} in ibm}
+        
+        \PY{k}{for} \PY{n}{stock\PYZus{}df}\PY{p}{,} \PY{n}{allo} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{p}{(}\PY{n}{aapl}\PY{p}{,} \PY{n}{cisco}\PY{p}{,} \PY{n}{ibm}\PY{p}{,} \PY{n}{amzn}\PY{p}{)}\PY{p}{,} \PY{p}{[}\PY{o}{.}\PY{l+m+mi}{3}\PY{p}{,} \PY{o}{.}\PY{l+m+mi}{2}\PY{p}{,} \PY{o}{.}\PY{l+m+mi}{4}\PY{p}{,} \PY{o}{.}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+            \PY{n}{stock\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Allocation}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{stock\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Normed return}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{*} \PY{n}{allo}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{aapl}\PY{o}{.}\PY{n}{tail}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}8}]:}             Adj. Close  Normed return  Allocation
+        Date                                             
+        2016-12-23  115.080808       2.177549    0.653265
+        2016-12-27  115.811668       2.191378    0.657413
+        2016-12-28  115.317843       2.182034    0.654610
+        2016-12-29  115.288214       2.181473    0.654442
+        2016-12-30  114.389454       2.164467    0.649340
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{k}{for} \PY{n}{stock\PYZus{}df} \PY{o+ow}{in} \PY{p}{(}\PY{n}{aapl}\PY{p}{,} \PY{n}{cisco}\PY{p}{,} \PY{n}{ibm}\PY{p}{,} \PY{n}{amzn}\PY{p}{)}\PY{p}{:}
+            \PY{n}{stock\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Position values}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{stock\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Allocation}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{*} \PY{l+m+mi}{1000000}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{aapl}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}10}]:}             Adj. Close  Normed return  Allocation  Position values
+         Date                                                              
+         2012-01-03   52.848787       1.000000    0.300000    300000.000000
+         2012-01-04   53.132802       1.005374    0.301612    301612.236461
+         2012-01-05   53.722681       1.016536    0.304961    304960.727573
+         2012-01-06   54.284287       1.027162    0.308149    308148.724558
+         2012-01-09   54.198183       1.025533    0.307660    307659.946988
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{all\PYZus{}pos\PYZus{}vals} \PY{o}{=} \PY{p}{[}\PY{n}{aapl}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Position values}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{cisco}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Position values}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ibm}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Position values}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{amzn}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Position values}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{portfolio\PYZus{}val} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{concat}\PY{p}{(}\PY{n}{all\PYZus{}pos\PYZus{}vals}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{portfolio\PYZus{}val}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}13}]:}             Position values  Position values  Position values  Position values
+         Date                                                                          
+         2012-01-03    300000.000000    200000.000000    400000.000000    100000.000000
+         2012-01-04    301612.236461    203864.734300    398368.223296     99150.980283
+         2012-01-05    304960.727573    203113.258186    396478.797638     99206.836843
+         2012-01-06    308148.724558    202361.782072    391926.999463    101999.664861
+         2012-01-09    307659.946988    203650.026838    389887.278583     99737.474166
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{portfolio\PYZus{}val}\PY{o}{.}\PY{n}{columns}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{AAPL Pos}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CISCO Pos}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{IBM Pos}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{AMZN Pos}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{portfolio\PYZus{}val}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total Pos}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{portfolio\PYZus{}val}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{portfolio\PYZus{}val}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}16}]:}                  AAPL Pos      CISCO Pos        IBM Pos       AMZN Pos  \textbackslash{}
+         Date                                                                     
+         2012-01-03  300000.000000  200000.000000  400000.000000  100000.000000   
+         2012-01-04  301612.236461  203864.734300  398368.223296   99150.980283   
+         2012-01-05  304960.727573  203113.258186  396478.797638   99206.836843   
+         2012-01-06  308148.724558  202361.782072  391926.999463  101999.664861   
+         2012-01-09  307659.946988  203650.026838  389887.278583   99737.474166   
+         
+                        Total Pos  
+         Date                      
+         2012-01-03  1.000000e+06  
+         2012-01-04  1.002996e+06  
+         2012-01-05  1.003760e+06  
+         2012-01-06  1.004437e+06  
+         2012-01-09  1.000935e+06  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{k+kn}{import} \PY{n+nn}{matplotlib.pyplot} \PY{k+kn}{as} \PY{n+nn}{plt}
+         \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{portfolio\PYZus{}val}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total Pos}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total Portfolio Value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}18}]:} Text(0.5,1,'Total Portfolio Value')
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_21_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{n}{portfolio\PYZus{}val}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total Pos}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}19}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x12b9bc450>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_22_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{n}{portfolio\PYZus{}val}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}20}]:}                  AAPL Pos      CISCO Pos        IBM Pos       AMZN Pos  \textbackslash{}
+         Date                                                                     
+         2012-01-03  300000.000000  200000.000000  400000.000000  100000.000000   
+         2012-01-04  301612.236461  203864.734300  398368.223296   99150.980283   
+         2012-01-05  304960.727573  203113.258186  396478.797638   99206.836843   
+         2012-01-06  308148.724558  202361.782072  391926.999463  101999.664861   
+         2012-01-09  307659.946988  203650.026838  389887.278583   99737.474166   
+         
+                        Total Pos  
+         Date                      
+         2012-01-03  1.000000e+06  
+         2012-01-04  1.002996e+06  
+         2012-01-05  1.003760e+06  
+         2012-01-06  1.004437e+06  
+         2012-01-09  1.000935e+06  
+\end{Verbatim}
+            
+    \subsection{Portflio Statistics}\label{portflio-statistics}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{n}{portfolio\PYZus{}val}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Daily Return}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{portfolio\PYZus{}val}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total Pos}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{pct\PYZus{}change}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{n}{portfolio\PYZus{}val}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}22}]:}                  AAPL Pos      CISCO Pos        IBM Pos       AMZN Pos  \textbackslash{}
+         Date                                                                     
+         2012-01-03  300000.000000  200000.000000  400000.000000  100000.000000   
+         2012-01-04  301612.236461  203864.734300  398368.223296   99150.980283   
+         2012-01-05  304960.727573  203113.258186  396478.797638   99206.836843   
+         2012-01-06  308148.724558  202361.782072  391926.999463  101999.664861   
+         2012-01-09  307659.946988  203650.026838  389887.278583   99737.474166   
+         
+                        Total Pos  Daily Return  
+         Date                                    
+         2012-01-03  1.000000e+06           NaN  
+         2012-01-04  1.002996e+06      0.002996  
+         2012-01-05  1.003760e+06      0.000761  
+         2012-01-06  1.004437e+06      0.000675  
+         2012-01-09  1.000935e+06     -0.003487  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{n}{portfolio\PYZus{}val}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Daily Return}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}23}]:} 0.0005442330716215244
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{n}{portfolio\PYZus{}val}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Daily Return}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}24}]:} 0.010568287769161718
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{n}{portfolio\PYZus{}val}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Daily Return}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{kind}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hist}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bins} \PY{o}{=} \PY{l+m+mi}{100}\PY{p}{,} \PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}25}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x12990a3d0>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_29_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{n}{portfolio\PYZus{}val}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Daily Return}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{kind}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{kde}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}26}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x12c0b0590>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_30_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{n}{cumulative\PYZus{}return} \PY{o}{=} \PY{l+m+mi}{100} \PY{o}{*} \PY{p}{(}\PY{n}{portfolio\PYZus{}val}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total Pos}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{/}\PY{n}{portfolio\PYZus{}val}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total Pos}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{n}{cumulative\PYZus{}return}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}28}]:} 84.74285181665545
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}29}]:} \PY{n}{SR} \PY{o}{=} \PY{n}{portfolio\PYZus{}val}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Daily Return}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)} \PY{o}{/} \PY{n}{portfolio\PYZus{}val}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Daily Return}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}30}]:} \PY{n}{SR}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}30}]:} 0.05149680662648092
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}31}]:} \PY{n}{ASR} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{252} \PY{o}{*}\PY{o}{*} \PY{l+m+mf}{0.5}\PY{p}{)} \PY{o}{*} \PY{n}{SR}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}32}]:} \PY{n}{ASR}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}32}]:} 0.8174864618859096
+\end{Verbatim}
+            
+    \subsubsection{Is this sharpe ratio considered
+good?}\label{is-this-sharpe-ratio-considered-good}
+
+A sharpe ratio greater than one is considered acceptable to good by
+investors depending on your risk tolerance.
+
+A ratio higher than 2 is usually rated as very good; a ratio of 3 or
+higher is considered to be excellent (very rare cases).
+
+The basic purpose of the Sharpe ratio is to allow investors to analyze
+how much greater a return one is obtaining in relation to the level of
+additional risk taken to generate that return.
+
+    \subsection{Portfolio Optimization}\label{portfolio-optimization}
+
+Now that we have a nice metric to evaluate Portfolio Allocations against
+each other, how can we optimize the portoflio holding?
+
+We just guess and check a bunch of random allocations and see which one
+has the best Sharpe Ratio! Since we have powerful computer and numpy's
+random number function, the strategy works for us.
+
+Randomly guessing and checking is sometimes known as a Monte Carlo
+Simulation. We randomly assign a weight to each security in our
+portfolio, then calculate its mean daily return and std. dev. of daily
+return.
+
+This allows us to calculate the Sharpe Ratio for thousands of randomly
+selected allocations. We can then plot the allocations on chart showing
+return vs. volatility, colored by the Sharpe Ratio.
+
+We're going to end up creating the above chart where y axis is the
+return and x axis is the volatility, and the color bar is the third
+dimention of the sharpe ratio. Red dot indicates the highest Sharpe
+Ratio on this plot.
+
+    \subsubsection{Minimization}\label{minimization}
+
+However, guessing and checking is not very efficient, instead we can use
+math to figure out the optimal Sharpe Ratio for any given portfolio.
+This is known as an optimazation algorithm. To really understand
+optimization algorithm, we need to understand minimization.
+
+Example: What value of x will minimize y? - \(y = x^2\)
+-\/-\textgreater{} x = 0 - \(y = (2 - x) ^2\) -\/-\textgreater{} x = 2
+
+This idea of using a minimizer will allow us to build an optimizer. For
+more complex equations, SciPy can do the heavy math for us!
+
+    \subsubsection{Relationship between minimization and sharpe
+ratio}\label{relationship-between-minimization-and-sharpe-ratio}
+
+We want to actually maximize the Sharpe Ratio, meaning we can create an
+optimizer that will attempt to minimize the inverse Sharpe Ratio!
+
+We will use SciPy's built-in optimization algorithms to calculate the
+optimal weight allocation for our portfolio (optimized by Sharpe Ratio).
+
+    \subsection{Efficient Frontier}\label{efficient-frontier}
+
+    \section{Portfolio Optimization code
+along}\label{portfolio-optimization-code-along}
+
+    \subsection{Monte Carlo Simulation}\label{monte-carlo-simulation}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}33}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k+kn}{as} \PY{n+nn}{np}
+         \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k+kn}{as} \PY{n+nn}{pd}
+         \PY{k+kn}{import} \PY{n+nn}{matplotlib.pyplot} \PY{k+kn}{as} \PY{n+nn}{plt}
+         \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}34}]:} \PY{n}{ibm}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}34}]:}             Adj. Close  Normed return  Allocation  Position values
+         Date                                                              
+         2012-01-03  157.578371       1.000000    0.400000    400000.000000
+         2012-01-04  156.935540       0.995921    0.398368    398368.223296
+         2012-01-05  156.191208       0.991197    0.396479    396478.797638
+         2012-01-06  154.398046       0.979817    0.391927    391926.999463
+         2012-01-09  153.594506       0.974718    0.389887    389887.278583
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}35}]:} \PY{n}{stocks} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{concat}\PY{p}{(}\PY{p}{[}\PY{n}{aapl}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Adj. Close}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{cisco}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Adj. Close}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ibm}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Adj. Close}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{amzn}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Adj. Close}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}36}]:} \PY{n}{stocks}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{aapl}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{cisco}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ibm}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{amzn}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{stocks}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}36}]:}                  aapl      cisco         ibm    amzn
+         Date                                                
+         2012-01-03  52.848787  15.617341  157.578371  179.03
+         2012-01-04  53.132802  15.919125  156.935540  177.51
+         2012-01-05  53.722681  15.860445  156.191208  177.61
+         2012-01-06  54.284287  15.801764  154.398046  182.61
+         2012-01-09  54.198183  15.902359  153.594506  178.56
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}37}]:} \PY{n}{stocks}\PY{o}{.}\PY{n}{pct\PYZus{}change}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}37}]:} aapl     0.000750
+         cisco    0.000599
+         ibm      0.000081
+         amzn     0.001328
+         dtype: float64
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}38}]:} \PY{n}{stocks}\PY{o}{.}\PY{n}{pct\PYZus{}change}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{.}\PY{n}{corr}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}38}]:}            aapl     cisco       ibm      amzn
+         aapl   1.000000  0.301990  0.297498  0.235487
+         cisco  0.301990  1.000000  0.424672  0.284470
+         ibm    0.297498  0.424672  1.000000  0.258492
+         amzn   0.235487  0.284470  0.258492  1.000000
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}41}]:} \PY{n}{stocks}\PY{o}{.}\PY{n}{pct\PYZus{}change}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}41}]:}                 aapl     cisco       ibm      amzn
+         Date                                              
+         2012-01-03       NaN       NaN       NaN       NaN
+         2012-01-04  0.005374  0.019324 -0.004079 -0.008490
+         2012-01-05  0.011102 -0.003686 -0.004743  0.000563
+         2012-01-06  0.010454 -0.003700 -0.011481  0.028152
+         2012-01-09 -0.001586  0.006366 -0.005204 -0.022178
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}42}]:} \PY{c+c1}{\PYZsh{} log returns are easy to work with}
+         \PY{n}{log\PYZus{}ret} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{stocks}\PY{o}{/}\PY{n}{stocks}\PY{o}{.}\PY{n}{shift}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+         \PY{n}{log\PYZus{}ret}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}42}]:}                 aapl     cisco       ibm      amzn
+         Date                                              
+         2012-01-03       NaN       NaN       NaN       NaN
+         2012-01-04  0.005360  0.019139 -0.004088 -0.008526
+         2012-01-05  0.011041 -0.003693 -0.004754  0.000563
+         2012-01-06  0.010400 -0.003707 -0.011547  0.027763
+         2012-01-09 -0.001587  0.006346 -0.005218 -0.022428
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}43}]:} \PY{n}{log\PYZus{}ret}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}43}]:} <function matplotlib.pyplot.tight\_layout>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_52_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}44}]:} \PY{n}{log\PYZus{}ret}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}44}]:} aapl     0.000614
+         cisco    0.000497
+         ibm      0.000011
+         amzn     0.001139
+         dtype: float64
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}67}]:} \PY{n}{log\PYZus{}ret}\PY{o}{.}\PY{n}{cov}\PY{p}{(}\PY{p}{)} \PY{o}{*} \PY{l+m+mi}{252}  
+         \PY{c+c1}{\PYZsh{} 252 business days}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}67}]:}            aapl     cisco       ibm      amzn
+         aapl   0.068326  0.017854  0.014464  0.018986
+         cisco  0.017854  0.051381  0.018029  0.019956
+         ibm    0.014464  0.018029  0.035203  0.014939
+         amzn   0.018986  0.019956  0.014939  0.094470
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}68}]:} \PY{k+kn}{import} \PY{n+nn}{time}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}70}]:} \PY{c+c1}{\PYZsh{}np.random.seed(101)}
+         \PY{n}{start\PYZus{}time} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+         \PY{n}{num\PYZus{}ports} \PY{o}{=} \PY{l+m+mi}{10000}
+         \PY{n}{all\PYZus{}weights} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{num\PYZus{}ports}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{stocks}\PY{o}{.}\PY{n}{columns}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         \PY{n}{ret\PYZus{}arr} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{num\PYZus{}ports}\PY{p}{)}
+         \PY{n}{vol\PYZus{}arr} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{num\PYZus{}ports}\PY{p}{)}
+         \PY{n}{sharpe\PYZus{}arr} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{num\PYZus{}ports}\PY{p}{)}
+         
+         \PY{k}{for} \PY{n}{ind} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{num\PYZus{}ports}\PY{p}{)}\PY{p}{:}
+             \PY{c+c1}{\PYZsh{} Weights}
+             \PY{n}{weights} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{random}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+             \PY{n}{weights} \PY{o}{=} \PY{n}{weights} \PY{o}{/} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{weights}\PY{p}{)}
+         
+             \PY{c+c1}{\PYZsh{} Save the weights}
+             \PY{n}{all\PYZus{}weights}\PY{p}{[}\PY{n}{ind}\PY{p}{,} \PY{p}{:}\PY{p}{]} \PY{o}{=} \PY{n}{weights}
+             
+             \PY{c+c1}{\PYZsh{} Expected return}
+             \PY{n}{exp\PYZus{}ret} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{log\PYZus{}ret}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)} \PY{o}{*} \PY{n}{weights} \PY{o}{*}  \PY{l+m+mi}{252}\PY{p}{)} 
+             \PY{n}{ret\PYZus{}arr}\PY{p}{[}\PY{n}{ind}\PY{p}{]} \PY{o}{=} \PY{n}{exp\PYZus{}ret}
+         
+             \PY{c+c1}{\PYZsh{} Expected volatility}
+             \PY{n}{exp\PYZus{}vol} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{weights}\PY{o}{.}\PY{n}{T}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{log\PYZus{}ret}\PY{o}{.}\PY{n}{cov}\PY{p}{(}\PY{p}{)} \PY{o}{*} \PY{l+m+mi}{252}\PY{p}{,} \PY{n}{weights}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+             \PY{n}{vol\PYZus{}arr}\PY{p}{[}\PY{n}{ind}\PY{p}{]} \PY{o}{=} \PY{n}{exp\PYZus{}vol}
+             
+             \PY{c+c1}{\PYZsh{}Sharpe Ratio}
+             \PY{n}{SR} \PY{o}{=} \PY{n}{exp\PYZus{}ret} \PY{o}{/} \PY{n}{exp\PYZus{}vol}
+             \PY{n}{sharpe\PYZus{}arr}\PY{p}{[}\PY{n}{ind}\PY{p}{]} \PY{o}{=} \PY{n}{SR}
+         
+         \PY{k}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Iterated \PYZob{}x\PYZcb{} times, took \PYZob{}y\PYZcb{} seconds}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{n}{num\PYZus{}ports}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{p}{(}\PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{start\PYZus{}time}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Iterated 10000 times, took 12.1389260292 seconds
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}81}]:} \PY{n}{sharpe\PYZus{}arr}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}81}]:} 1.029210056484699
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}82}]:} \PY{n}{sharpe\PYZus{}arr}\PY{o}{.}\PY{n}{argmax}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}82}]:} 852
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}83}]:} \PY{n}{max\PYZus{}sr\PYZus{}ret} \PY{o}{=} \PY{n}{ret\PYZus{}arr}\PY{p}{[}\PY{n}{sharpe\PYZus{}arr}\PY{o}{.}\PY{n}{argmax}\PY{p}{(}\PY{p}{)}\PY{p}{]}
+         \PY{n}{max\PYZus{}sr\PYZus{}vol} \PY{o}{=} \PY{n}{vol\PYZus{}arr}\PY{p}{[}\PY{n}{sharpe\PYZus{}arr}\PY{o}{.}\PY{n}{argmax}\PY{p}{(}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}84}]:} \PY{n}{all\PYZus{}weights}\PY{p}{[}\PY{n}{sharpe\PYZus{}arr}\PY{o}{.}\PY{n}{argmax}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}84}]:} array([0.26455872, 0.19092709, 0.00405137, 0.54046281])
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}89}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{vol\PYZus{}arr}\PY{p}{,} \PY{n}{ret\PYZus{}arr}\PY{p}{,} \PY{n}{c} \PY{o}{=} \PY{n}{sharpe\PYZus{}arr}\PY{p}{,} \PY{n}{cmap}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{plasma}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sharpe Ratio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Volatility}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Return}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{max\PYZus{}sr\PYZus{}vol}\PY{p}{,} \PY{n}{max\PYZus{}sr\PYZus{}ret}\PY{p}{,} \PY{n}{c} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{red}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{s} \PY{o}{=} \PY{l+m+mi}{50}\PY{p}{,} \PY{n}{edgecolors}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{black}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}89}]:} <matplotlib.collections.PathCollection at 0x1a33388c90>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_61_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsection{Mathmatical optimization}\label{mathmatical-optimization}
+
+For more details about minimize, check the SciPy documentation.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}109}]:} \PY{k}{def} \PY{n+nf}{get\PYZus{}ret\PYZus{}vol\PYZus{}sr}\PY{p}{(}\PY{n}{weights}\PY{p}{)}\PY{p}{:} 
+              \PY{n}{weights} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{weights}\PY{p}{)}
+              \PY{n}{ret} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{log\PYZus{}ret}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)} \PY{o}{*} \PY{n}{weights}\PY{p}{)} \PY{o}{*} \PY{l+m+mi}{252}
+              \PY{n}{vol} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{weights}\PY{o}{.}\PY{n}{T}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{log\PYZus{}ret}\PY{o}{.}\PY{n}{cov}\PY{p}{(}\PY{p}{)} \PY{o}{*} \PY{l+m+mi}{252}\PY{p}{,} \PY{n}{weights}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+              \PY{n}{sr} \PY{o}{=} \PY{n}{ret} \PY{o}{/} \PY{n}{vol}
+              \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{n}{ret}\PY{p}{,} \PY{n}{vol}\PY{p}{,} \PY{n}{sr}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}110}]:} \PY{k+kn}{from} \PY{n+nn}{scipy.optimize} \PY{k+kn}{import} \PY{n}{minimize}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}111}]:} \PY{k}{def} \PY{n+nf}{neg\PYZus{}sharpe}\PY{p}{(}\PY{n}{weights}\PY{p}{)}\PY{p}{:} 
+              \PY{k}{return} \PY{n}{get\PYZus{}ret\PYZus{}vol\PYZus{}sr}\PY{p}{(}\PY{n}{weights}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{*} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}112}]:} \PY{k}{def} \PY{n+nf}{check\PYZus{}sum}\PY{p}{(}\PY{n}{weights}\PY{p}{)}\PY{p}{:}
+              \PY{c+c1}{\PYZsh{} return 0 if the sum of the weights is 1}
+              \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{weights}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}113}]:} \PY{n}{cons} \PY{o}{=} \PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{type}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{eq}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{fun}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{check\PYZus{}sum}\PY{p}{\PYZcb{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}114}]:} \PY{n}{bounds} \PY{o}{=} \PY{p}{(}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}115}]:} \PY{n}{init\PYZus{}guess} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{0.25}\PY{p}{,} \PY{l+m+mf}{0.25}\PY{p}{,} \PY{l+m+mf}{0.25}\PY{p}{,} \PY{l+m+mf}{0.25}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}116}]:} \PY{n}{opt\PYZus{}results} \PY{o}{=} \PY{n}{minimize}\PY{p}{(}\PY{n}{neg\PYZus{}sharpe}\PY{p}{,} \PY{n}{init\PYZus{}guess}\PY{p}{,} \PY{n}{method}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{SLSQP}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bounds}\PY{o}{=}\PY{n}{bounds}\PY{p}{,} \PY{n}{constraints}\PY{o}{=}\PY{n}{cons}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}117}]:} \PY{n}{opt\PYZus{}results}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}117}]:}      fun: -1.0307168703346878
+               jac: array([ 5.64306974e-05,  4.18275595e-05,  3.39921713e-01, -4.45246696e-05])
+           message: 'Optimization terminated successfully.'
+              nfev: 42
+               nit: 7
+              njev: 7
+            status: 0
+           success: True
+                 x: array([0.26628978, 0.20418982, 0.        , 0.5295204 ])
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}118}]:} \PY{n}{opt\PYZus{}results}\PY{o}{.}\PY{n}{x}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}118}]:} array([0.26628978, 0.20418982, 0.        , 0.5295204 ])
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}119}]:} \PY{n}{get\PYZus{}ret\PYZus{}vol\PYZus{}sr}\PY{p}{(}\PY{n}{opt\PYZus{}results}\PY{o}{.}\PY{n}{x}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}119}]:} array([0.21885915, 0.21233683, 1.03071687])
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}120}]:} \PY{n}{frontier\PYZus{}y} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.3}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}121}]:} \PY{k}{def} \PY{n+nf}{minimize\PYZus{}volatility}\PY{p}{(}\PY{n}{weights}\PY{p}{)}\PY{p}{:}
+              \PY{k}{return} \PY{n}{get\PYZus{}ret\PYZus{}vol\PYZus{}sr}\PY{p}{(}\PY{n}{weights}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}123}]:} \PY{n}{frontier\PYZus{}volatility} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{k}{for} \PY{n}{possible\PYZus{}return} \PY{o+ow}{in} \PY{n}{frontier\PYZus{}y}\PY{p}{:}
+              \PY{n}{cons} \PY{o}{=} \PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{type}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{eq}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{fun}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{check\PYZus{}sum}\PY{p}{\PYZcb{}}\PY{p}{,}
+                     \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{type}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{eq}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{fun}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{k}{lambda} \PY{n}{w}\PY{p}{:} \PY{n}{get\PYZus{}ret\PYZus{}vol\PYZus{}sr}\PY{p}{(}\PY{n}{w}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{possible\PYZus{}return}\PY{p}{\PYZcb{}}\PY{p}{)}
+              
+              \PY{n}{result} \PY{o}{=} \PY{n}{minimize}\PY{p}{(}\PY{n}{minimize\PYZus{}volatility}\PY{p}{,} \PY{n}{init\PYZus{}guess}\PY{p}{,} \PY{n}{method}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{SLSQP}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bounds} \PY{o}{=} \PY{n}{bounds}\PY{p}{,} \PY{n}{constraints}\PY{o}{=}\PY{n}{cons}\PY{p}{)}
+              \PY{n}{frontier\PYZus{}volatility}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{result}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{fun}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}124}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{vol\PYZus{}arr}\PY{p}{,} \PY{n}{ret\PYZus{}arr}\PY{p}{,} \PY{n}{c} \PY{o}{=} \PY{n}{sharpe\PYZus{}arr}\PY{p}{,} \PY{n}{cmap}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{plasma}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sharpe Ratio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Volatility}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Return}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          
+          \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{frontier\PYZus{}volatility}\PY{p}{,} \PY{n}{frontier\PYZus{}y}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{g\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}124}]:} [<matplotlib.lines.Line2D at 0x1a338b9690>]
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_77_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \section{Key Financial Topics}\label{key-financial-topics}
+
+\begin{itemize}
+\tightlist
+\item
+  Types of funds
+\item
+  Order Books
+\item
+  Latency Arbitrage (HFT)
+\item
+  Short Selling
+\end{itemize}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
